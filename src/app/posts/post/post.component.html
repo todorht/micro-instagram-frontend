@@ -1,0 +1,16 @@
+<div style="width: 70%; justify-content: center;">
+    <div class="float-container">
+    <div class="float-child">{{post.username}}</div>
+    <div class="float-child"><a [routerLink]="['/posts/edit', post.postId]"><button>Edit</button></a></div>
+    <div class="float-child"><a [routerLink]="['/posts/delete', post.postId]"><button (click)="deletePost(post.postId)">Delete</button></a></div>
+    </div>
+    <img class="image-fluid" [src]="post.base64image" style="width: 900px;">
+    <div class="float-container">
+        <div class="float-child" style="font-family:fantasy; text-align: left;">
+            {{post.username}}
+        </div>
+        <div class="float-child" >
+            {{post.description}}
+        </div>
+    </div>
+</div>
