@@ -24,9 +24,9 @@ export class PostComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log("Post component")
-    const path = this.route.snapshot.url;
-    console.log(path);
-    this.sub = this.postService.getPost(Number(path[1])).subscribe({
+    const postId = Number(this.route.snapshot.paramMap.get('postId'));
+    console.log(postId);
+    this.sub = this.postService.getPost(postId).subscribe({
       next: post => this.post = post,
       error: err => this.errorMessage = err
     })

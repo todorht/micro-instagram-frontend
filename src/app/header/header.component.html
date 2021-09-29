@@ -1,13 +1,12 @@
-<div style="width: 70%; justify-content: center; " >
-    <nav class="navbar navbar-expand navbar-light">    
-    <ul class="nav nav-pills"> 
-        <li class="nav-link"><a [routerLink]="['/posts']">Home Page</a></li>
-        <li class="nav-link"><a [routerLink]="['/posts/new']">New Post</a></li>
+<div>
+  <nav class="navbar navbar-expand navbar-light">
+    <ul class="nav nav-pills">
+      <li class="nav-link"><a [routerLink]="['/posts']">Home Page</a></li>
+      <li class="nav-link"><a [routerLink]="['/posts/new']">New Post</a></li>
     </ul>
     <a class="navbar-brand">Micro Instagram</a>
-    
-    </nav>
-    <div style="display: flex; justify-self: center; width: 70%;">
-        <router-outlet></router-outlet> 
-    </div>
- </div>
+  </nav>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

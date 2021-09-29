@@ -1,12 +1,16 @@
 <div>
-    <div *ngFor="let post of posts">
-        <div class="card">
-            <div>
-                {{post.username}}
-            </div>
-            <a [routerLink]="['/posts',post.postId]">
-            <img [src]="post.base64image" [title]="post.postId" [style.width.px]="700">
-            </a>
-        </div>
+  <div class="container" *ngFor="let post of posts">
+    <div>
+      <div>
+        {{ post.username }}
+      </div>
+      <a [routerLink]="['/posts', post.postId]">
+        <img
+          [src]="post.base64image"
+          [title]="post.postId"
+          [style.width.px]="700"
+        />
+      </a>
     </div>
+  </div>
 </div>
