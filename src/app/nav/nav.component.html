@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
+  <!-- <mat-sidenav
     #drawer
     class="sidenav"
     fixedInViewport
@@ -12,21 +12,34 @@
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/posts']">Home Page</a>
       <a mat-list-item [routerLink]="['/posts/new']">New Post</a>
+      <a mat-list-item [routerLink]="['/login']" routerLinkActive="router-link-active">Log In</a>
     </mat-nav-list>
-  </mat-sidenav>
+  </mat-sidenav> -->
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar style="background-color: green; color: white">
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()"
         *ngIf="isHandset$ | async"
         disableClose="true"
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Micro Instagram</span>
+      <span>Pet World</span>
+      <mat-nav-list>
+        <ul>
+          <a mat-icon-button style="margin-right: 15px;" [routerLink]="['/posts']">Home</a>
+          <a mat-icon-button style="margin-right: 15px;" [routerLink]="['/posts/new']">New Post</a>
+          <a
+            mat-icon-button
+            style="margin-left: 15px;"
+            [routerLink]="['/login']"
+            routerLinkActive="router-link-active"
+            >Log In</a
+          >
+        </ul>
+      </mat-nav-list>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

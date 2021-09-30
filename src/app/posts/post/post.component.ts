@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoggerService } from 'my-logger';
 import { Subscription } from 'rxjs';
 import { IPost } from '../ipost';
 import { PostService } from '../post.service';
@@ -16,24 +17,25 @@ export class PostComponent implements OnInit, OnDestroy {
   errorMessage: string = '';
 
   constructor(private route: ActivatedRoute,
-    private postService: PostService) {}
+    private postService: PostService,
+    private loggerService: LoggerService) {}
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
   ngOnInit(): void {
-    console.log("Post component")
     const postId = Number(this.route.snapshot.paramMap.get('postId'));
-    console.log(postId);
     this.sub = this.postService.getPost(postId).subscribe({
       next: post => this.post = post,
       error: err => this.errorMessage = err
     })
+    this.loggerService.log('User open full post with postId ' + postId)
   }
 
   deletePost(postId: number){
     this.postService.deletePost(postId);
+
   }
 
 }

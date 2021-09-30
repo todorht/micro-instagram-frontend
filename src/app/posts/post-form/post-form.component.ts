@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { IPost } from '../ipost';
 import { PostService } from '../post.service';
 
+
 @Component({
   selector: 'app-post-form',
   templateUrl: './post-form.component.html',
@@ -43,7 +44,7 @@ export class PostFormComponent implements OnInit, OnDestroy {
     }else{
       this.newPost = true;
     }
-    
+
   }
 
 }

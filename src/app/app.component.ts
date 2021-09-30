@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'Micro Instagram';
 
   constructor(private loggerService: LoggerService){
-    loggerService.log('micro-instagram ready ' + Date.now);
+    loggerService.log('micro-instagram ready');
   }
 
 }
