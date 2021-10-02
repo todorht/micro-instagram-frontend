@@ -4,6 +4,7 @@ export interface IPost {
     base64image: string;
     description: string;
     createAt: Date;
+    comments?:IComment[]
 }
 
 interface IComment{

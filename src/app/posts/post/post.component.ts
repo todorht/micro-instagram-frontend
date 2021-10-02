@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoggerService } from 'my-logger';
 import { Subscription } from 'rxjs';
 import { IPost } from '../ipost';
@@ -8,7 +8,7 @@ import { PostService } from '../post.service';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit, OnDestroy {
 
@@ -18,7 +18,12 @@ export class PostComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
     private postService: PostService,
-    private loggerService: LoggerService) {}
+    private loggerService: LoggerService,
+    private router: Router) {}
+
+  cancel(){
+    this.router.navigate(['/posts'])
+  }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();

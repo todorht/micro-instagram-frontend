@@ -1,20 +1,32 @@
-<div>
-  <div>
-    <div>{{ post.username }}</div>
-    <a [routerLink]="['/posts/edit', post.postId]"><button>Edit</button></a>
-    <a [routerLink]="['/posts/delete', post.postId]">
-      <button (click)="deletePost(post.postId)">Delete</button>
-    </a>
-  </div>
-  <div>
-    <img [src]="post.base64image" style="width: 900px" />
-  </div>
-  <div>
-    <div>
-      {{ post.username }}
-    </div>
-    <div>
-      {{ post.description }}
-    </div>
-  </div>
+<div class="main-div">
+  <mat-card class="post-card">
+    <mat-card-header>
+      <mat-card-title>{{ post?.username }}</mat-card-title>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="cancel()"><mat-icon>clear</mat-icon></button>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item [routerLink]="['/posts/edit', post.postId]"
+        ><mat-icon>edit</mat-icon>Edit</a>
+      <a mat-menu-item (click)="deletePost(post.postId)" [routerLink]="['/posts/delete', post.postId]"><mat-icon>delete</mat-icon>Delete</a>
+      </mat-menu>
+    </mat-card-header>
+    <img mat-card-image [src]="post?.base64image" />
+    <mat-card-content>
+      <p>
+        {{ post?.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>COMMENT</button>
+
+    </mat-card-actions>
+  </mat-card>
 </div>

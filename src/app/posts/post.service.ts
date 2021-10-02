@@ -31,7 +31,7 @@ export class PostService {
     const newUrl = this.url+"/posts/delete/";
     this.http.delete(newUrl+String(postId))
      .subscribe(() => console.log("Delete successful"));
-     
+
   }
 
   private handleError(err: HttpErrorResponse){
