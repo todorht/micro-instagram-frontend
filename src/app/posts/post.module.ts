@@ -5,20 +5,25 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { PostFormComponent } from './post-form/post-form.component';
 import { PostGuard } from './post.guard';
+import { UserGuard } from '../user/user.guard';
+import { ImageComponent } from './post-form/image.component';
+import { SafeImageUrlPipe } from './safe-image-url.pipe';
 
 const routes: Routes = [
-  { path: 'posts', component: PostsListComponent, pathMatch: 'full' },
-  { path: 'posts/new', component: PostFormComponent, pathMatch: 'full' },
-  { path: 'posts/:postId', canActivate: [PostGuard], component: PostComponent, pathMatch: 'full' },
-  { path: 'posts/edit/:postId', canActivate: [PostGuard], component: PostFormComponent, pathMatch: 'full' },
-  { path: 'posts/delete/:postId', canActivate: [PostGuard], component: PostsListComponent, pathMatch: 'full' },
+  { path: 'posts', canActivate: [UserGuard], component: PostsListComponent, pathMatch: 'full' },
+  { path: 'posts/new', canActivate: [UserGuard], component: PostFormComponent, pathMatch: 'full' },
+  { path: 'posts/:postId', canActivate: [UserGuard, PostGuard], component: PostComponent, pathMatch: 'full' },
+  { path: 'posts/edit/:postId', canActivate: [UserGuard, PostGuard], component: PostFormComponent, pathMatch: 'full' },
+  { path: 'posts/delete/:postId', canActivate: [UserGuard, PostGuard], component: PostsListComponent, pathMatch: 'full' },
 ]
 
 @NgModule({
   declarations: [
     PostComponent,
     PostsListComponent,
-    PostFormComponent
+    PostFormComponent,
+    ImageComponent,
+    SafeImageUrlPipe
   ],
   imports: [
     RouterModule.forChild(routes),

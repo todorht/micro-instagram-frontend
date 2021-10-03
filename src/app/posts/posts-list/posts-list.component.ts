@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IPost } from '../ipost';
+import { Post } from '../ipost';
 import { PostService } from '../post.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { PostService } from '../post.service';
 })
 export class PostsListComponent implements OnInit, OnDestroy {
 
-  posts:IPost[] = [];
+  posts:Post[] = [];
   sub!: Subscription;
   errorMessage: string = '';
 

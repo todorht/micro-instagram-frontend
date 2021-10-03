@@ -1,10 +1,8 @@
-export interface IPost {
+export interface Post {
     postId: number;
     username: string;
     base64image: string;
     description: string;
-    createAt: Date;
-    comments?:IComment[]
 }
 
 interface IComment{

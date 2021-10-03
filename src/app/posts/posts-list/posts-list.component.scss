@@ -1,17 +1,13 @@
 .post-card {
-  width: 370px;
+  width: 700px;
   margin-top: 10px;
-}
-
-@media all and (max-width: 800px) {
-  .flex-container {
-    justify-content: flex-start;
-  }
 }
 
 .flex-container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  flex-direction: column;
+  flex-wrap:wrap-reverse;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(136, 185, 2);
 }

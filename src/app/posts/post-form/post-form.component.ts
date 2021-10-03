@@ -1,7 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IPost } from '../ipost';
+import { AuthService } from 'src/app/user/auth.service';
+import { Post } from '../ipost';
 import { PostService } from '../post.service';
 
 
@@ -12,19 +14,22 @@ import { PostService } from '../post.service';
 })
 export class PostFormComponent implements OnInit, OnDestroy {
 
-  post: IPost = {
+  @Input() sendImage:any;
+
+  post: Post = {
     postId: 0,
     username: '',
     base64image: '',
     description: '',
-    createAt: new Date(),
   }
   sub!:Subscription;
   errorMessage: string = '';
   newPost: boolean = true;
 
   constructor(private route: ActivatedRoute,
-              private postService: PostService) { }
+              private postService: PostService,
+              private router: Router,
+              public authService: AuthService) {}
 
   ngOnDestroy(): void {
     if(this.sub){
@@ -44,7 +49,26 @@ export class PostFormComponent implements OnInit, OnDestroy {
     }else{
       this.newPost = true;
     }
+    console.log(this.post);
+  }
 
+  saveImage(base64image:any){
+    this.post.base64image = base64image;
+  }
+
+  onSubmit(postForm: any){
+    this.post.username = String(this.authService.getCurrentUser());
+    this.post.description = postForm.description;
+    console.log(this.post);
+
+    this.postService.savePost(this.post).subscribe(()=>{
+      console.log("Super stigna");
+      this.router.navigate(["/posts"]);
+    })
+  }
+
+  cancel(){
+    this.router.navigate(['/posts']);
   }
 
 }

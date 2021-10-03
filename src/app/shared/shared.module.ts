@@ -14,6 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatInputModule} from '@angular/material/input';
 
 import { MyLoggerModule } from 'my-logger';
 
@@ -38,7 +39,8 @@ import { MyLoggerModule } from 'my-logger';
     MyLoggerModule,
     MatButtonToggleModule,
     MatTabsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatInputModule
   ]
 })
 export class SharedModule { }

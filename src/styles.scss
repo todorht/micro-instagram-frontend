@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* @import "@angular/material/prebuilt-themes/indigo-pink.css"; */
+
+@use "~@angular/material" as mat;
+@include mat.core();
+
+$candy-app-primary: mat.define-palette(mat.$indigo-palette);
+$candy-app-accent: mat.define-palette(mat.$pink-palette, A300, A100, A400);
+$candy-app-warn: mat.define-palette(mat.$red-palette);
+
+$candy-app-theme: mat.define-light-theme(
+  $candy-app-primary,
+  $candy-app-accent,
+  $candy-app-warn
+);
+
+@include mat.all-component-themes($candy-app-theme);
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.dark-theme {
+  $primary-dark: mat.define-palette(mat.$green-palette, 800);
+  $accent-dark: mat.define-palette(mat.$pink-palette, A300, A100, A400);
+  $warn-dark: mat.define-palette(mat.$red-palette);
+
+  $theme-dark: mat.define-dark-theme(
+    $primary-dark,
+    $accent-dark,
+    $warn-dark
+  );
+
+  @include mat.all-component-themes($theme-dark)
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.main-div {
+  max-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-card {
+  max-width: 1200px;
+}
+
+.bigger-image{
+  max-height: 700px;
+  width: 1000px;
+}

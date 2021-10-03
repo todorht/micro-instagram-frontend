@@ -1,17 +1,30 @@
-<mat-toolbar color="primary">
-  <button mat-button class="sidenav-toggle" (click)="toggleSidenav.emit()">
-    <mat-icon>menu</mat-icon>
-  </button>
+<mat-toolbar *ngIf="authService.isAuthenticated()" color="primary">
   <span>Pet World</span>
   <span class="example-spacer"></span>
-  <section>
+
     <div class="example-button-row">
-      <a mat-button [routerLink]="['/posts']"  routerLinkActive="active" ><mat-icon>home</mat-icon>Home</a>
-      <a mat-button [routerLink]="['/posts/new']" ><mat-icon>add</mat-icon>New Post</a>
+      <a mat-button [routerLink]="['/posts']"  routerLinkActive="active" ><mat-icon class="icon">home</mat-icon></a>
+      <a mat-button [routerLink]="['/posts/new']" ><mat-icon class="icon">add</mat-icon></a>
     </div>
-  </section>
+
   <span class="example-spacer"></span>
-  <!-- <a mat-raised-button href="#" target="_blank"
-    ><mat-icon>logout</mat-icon>Logout</a
-  > -->
+  <button
+    mat-raised-button color="warn"
+        [matMenuTriggerFor]="profileMenu"
+      >
+      <mat-icon>account_circle</mat-icon>
+      {{authService.getCurrentUser()}}
+      </button>
+
+      <mat-menu  #profileMenu="matMenu">
+        <a mat-menu-item
+        >Profile</a>
+      <a mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon>Logout</a>
+      </mat-menu>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="!authService.isAuthenticated()" color="primary">
+  <span class="example-spacer"></span>
+  <span>Pet World</span>
+  <span class="example-spacer"></span>
 </mat-toolbar>

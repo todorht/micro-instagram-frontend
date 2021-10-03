@@ -1,28 +1,33 @@
 
-  <body>
-    <div id="login-form">
-      <form class="form-signin">
+
+    <div class="main-div" style="justify-content: center;" id="login-form">
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" >
         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
           Sign in
         </h1>
         <input
+          (ngModel)="username"
+          name="username"
           id="username"
           class="form-control"
           placeholder="Your username"
-          required=""
+          required
           autofocus=""
         />
+        <br>
         <input
+        (ngModel)="password"
+          name="password"
           type="password"
           id="inputPassword"
           class="form-control"
           placeholder="Password"
-          required=""
+          required
         />
-
-        <button class="btn btn-success btn-block" type="submit">
-          <i class="fas fa-sign-in-alt"></i> Sign in
+        <br>
+        <button [disabled]="loginForm.invalid" class="btn btn-success btn-block" style="margin-left: 72px" type="submit">
+           Sign in
         </button>
       </form>
     </div>
-  </body>
+

@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoggerService } from 'my-logger';
 import { Subscription } from 'rxjs';
-import { IPost } from '../ipost';
+import { AuthService } from 'src/app/user/auth.service';
+import { Post } from '../ipost';
 import { PostService } from '../post.service';
 
 @Component({
@@ -12,14 +13,15 @@ import { PostService } from '../post.service';
 })
 export class PostComponent implements OnInit, OnDestroy {
 
-  post!:IPost;
+  post!:Post;
   sub!: Subscription;
   errorMessage: string = '';
 
   constructor(private route: ActivatedRoute,
     private postService: PostService,
     private loggerService: LoggerService,
-    private router: Router) {}
+    private router: Router,
+    public authService: AuthService) {}
 
   cancel(){
     this.router.navigate(['/posts'])

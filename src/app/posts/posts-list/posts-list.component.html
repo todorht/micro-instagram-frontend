@@ -6,7 +6,7 @@
     <img
       [routerLink]="['/posts/', post.postId]"
       mat-card-image
-      [src]="post?.base64image"
+      [src]="post.base64image | safeImageUrl"
       [title]="post?.postId"
     />
   </mat-card>

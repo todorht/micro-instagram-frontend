@@ -1,23 +1,36 @@
 <div class="main-div">
-  <h3>{{ newPost ? "Create new post" : "Edit post" }}</h3>
-  <form #form="ngForm">
-    <p>{{ post.username }}</p>
-    <div *ngIf="newPost">
-      <!-- input image -->
-    </div>
-    <div *ngIf="!newPost">
-      <img [src]="post.base64image" width="700px" />
-    </div>
-    <div>
-      <label for="description">Description</label>
-      <textarea
-        id="description"
-        name="description"
-        class="form-control"
-        rows="2"
-        >{{ post.description }}</textarea
-      >
-    </div>
-  </form>
-  <button mat-button><mat-icon>done_all</mat-icon>Confirm</button>
+  <mat-card>
+    <form
+      #postForm="ngForm"
+      class="post-card"
+      (ngSubmit)="onSubmit(postForm.value)"
+    >
+      <h3>{{ newPost ? "Create new post" : "Edit post" }}</h3>
+      <div *ngIf="!newPost">
+        <img [src]="post.base64image | safeImageUrl" class="bigger-image" />
+      </div>
+      <app-image
+        *ngIf="newPost"
+        [newPost]="newPost"
+        (sendImage)="saveImage($event)"
+      ></app-image>
+      <br />
+      <div>
+        <label for="description">Description</label>
+        <textarea
+          ngModel
+          id="description"
+          name="description"
+          class="form-control"
+          rows="2"
+          [value]="post.description"
+          ></textarea
+        >
+      </div>
+      <button mat-button type="submit">
+        <mat-icon>done_all</mat-icon>Confirm
+      </button>
+      <a mat-button (click)="cancel()"><mat-icon>cancel</mat-icon>Cancel</a>
+    </form>
+  </mat-card>
 </div>
