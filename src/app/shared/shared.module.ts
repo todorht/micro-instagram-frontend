@@ -15,8 +15,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatInputModule} from '@angular/material/input';
-
-import { MyLoggerModule } from 'my-logger';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -36,11 +35,11 @@ import { MyLoggerModule } from 'my-logger';
     MatListModule,
     FlexLayoutModule,
     MatCardModule,
-    MyLoggerModule,
     MatButtonToggleModule,
     MatTabsModule,
     MatMenuModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

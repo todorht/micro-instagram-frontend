@@ -1,3 +1,4 @@
+import { isFakeTouchstartFromScreenReader } from '@angular/cdk/a11y';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
@@ -12,13 +13,16 @@ export class PostService {
 
   private url = 'http://localhost:8888'
 
+  data = [];
+
   constructor(private http: HttpClient) {}
 
-  getPostsFromServer(path:string):Observable<Post[]>{
-    return this.http.get<Post[]>(this.url+"/"+path).pipe(
+  getPostsFromServer():Observable<Post[]>{
+    return this.http.get<Post[]>(this.url+"/posts").pipe(
       tap(data => console.log('All', JSON.stringify(data))),
       catchError(this.handleError)
     );
+
   }
 
   getPost(postId: number){
@@ -35,7 +39,7 @@ export class PostService {
   }
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json'
+      'Content-Type': 'application/json'
     })
   };
 

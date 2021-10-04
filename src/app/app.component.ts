@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { LoggerService } from 'my-logger';
+
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,8 @@ export class AppComponent {
 
   @Output() toggleSidenav = new EventEmitter<void>();
 
-  constructor(private loggerService: LoggerService){
-    loggerService.log('micro-instagram ready');
+  constructor(){
+
   }
 
 }

@@ -8,6 +8,7 @@ import { PostGuard } from './post.guard';
 import { UserGuard } from '../user/user.guard';
 import { ImageComponent } from './post-form/image.component';
 import { SafeImageUrlPipe } from './safe-image-url.pipe';
+import { DeleteDialogComponent } from './post/delete-dialog.component';
 
 const routes: Routes = [
   { path: 'posts', canActivate: [UserGuard], component: PostsListComponent, pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
     PostsListComponent,
     PostFormComponent,
     ImageComponent,
-    SafeImageUrlPipe
+    SafeImageUrlPipe,
+    DeleteDialogComponent
   ],
   imports: [
     RouterModule.forChild(routes),

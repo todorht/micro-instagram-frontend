@@ -1,12 +1,9 @@
-.post-card {
-  width: 700px;
-  margin-top: 10px;
-}
+
 
 .flex-container {
   display: flex;
   flex-direction: column;
-  flex-wrap:wrap-reverse;
+  flex-wrap: inherit;
   justify-content: center;
   align-items: center;
   background-color: rgb(136, 185, 2);

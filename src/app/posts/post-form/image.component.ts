@@ -4,9 +4,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-image',
   template: `
-    <div class="image-upload-container">
+    <div mat-card-image>
       <div><img [src]="base64image | safeImageUrl" class="bigger-image" *ngIf="base64image"/> </div>
-      <span>Select Image</span>
+      <span style="padding-left: 10px;">Select Image</span>
       <input
              type="file"
              accept="image/*"
@@ -47,9 +47,9 @@ export class ImageComponent implements OnInit {
     reader.onload = (_event) => {
       this.errorMessage = "";
       this.base64image = reader.result;
+      this.sendImage.emit(this.base64image);
     }
-    console.log(this.errorMessage);
-    this.sendImage.emit(this.base64image);
+    
   }
 
 }

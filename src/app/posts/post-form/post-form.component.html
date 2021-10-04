@@ -1,15 +1,17 @@
 <div class="main-div">
-  <mat-card>
-    <form
-      #postForm="ngForm"
-      class="post-card"
-      (ngSubmit)="onSubmit(postForm.value)"
-    >
+  <mat-card class="post-card">
+    <form #postForm="ngForm" (ngSubmit)="onSubmit(postForm.value)">
       <h3>{{ newPost ? "Create new post" : "Edit post" }}</h3>
-      <div *ngIf="!newPost">
-        <img [src]="post.base64image | safeImageUrl" class="bigger-image" />
-      </div>
+      <span class="spacer"></span>
+      <img
+        *ngIf="!newPost"
+        mat-card-image
+        [src]="post.base64image | safeImageUrl"
+        class="bigger-image"
+      />
+
       <app-image
+      mat-card-image
         *ngIf="newPost"
         [newPost]="newPost"
         (sendImage)="saveImage($event)"
@@ -24,8 +26,7 @@
           class="form-control"
           rows="2"
           [value]="post.description"
-          ></textarea
-        >
+        ></textarea>
       </div>
       <button mat-button type="submit">
         <mat-icon>done_all</mat-icon>Confirm

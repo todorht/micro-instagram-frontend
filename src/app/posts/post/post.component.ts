@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoggerService } from 'my-logger';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/user/auth.service';
 import { Post } from '../ipost';
 import { PostService } from '../post.service';
+import { DeleteDialogComponent } from './delete-dialog.component';
 
 @Component({
   selector: 'app-post',
@@ -19,9 +20,9 @@ export class PostComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
     private postService: PostService,
-    private loggerService: LoggerService,
     private router: Router,
-    public authService: AuthService) {}
+    public authService: AuthService,
+    private dialog: MatDialog) {}
 
   cancel(){
     this.router.navigate(['/posts'])
@@ -37,12 +38,24 @@ export class PostComponent implements OnInit, OnDestroy {
       next: post => this.post = post,
       error: err => this.errorMessage = err
     })
-    this.loggerService.log('User open full post with postId ' + postId)
+  }
+
+  openDeleteDialog(){
+    let dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '400px'
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.deletePost(this.post.postId);
+      }
+
+    })
   }
 
   deletePost(postId: number){
-    this.postService.deletePost(postId);
-
+      this.postService.deletePost(postId);
+      this.cancel();
   }
 
 }
