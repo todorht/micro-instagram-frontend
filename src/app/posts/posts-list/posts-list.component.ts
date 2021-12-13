@@ -31,6 +31,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
     this.sub = this.postService.getPostsFromServer().subscribe({
       next: posts => this.posts = posts,
       error: err => this.errorMessage = err,
+      
     });
   }
 

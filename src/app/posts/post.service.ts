@@ -25,7 +25,7 @@ export class PostService {
 
   }
 
-  getPost(postId: number){
+  getPost(postId: number):Observable<Post>{
     return this.http.get<Post>(this.url+"/posts/"+postId).pipe(
       catchError(this.handleError)
     );
